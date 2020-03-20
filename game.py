@@ -6,22 +6,33 @@ Class HH_Game():
 		self.is_started = False
 		self.is_paused = False
 
-#Start game
-def start():
+	#Start game
+	def start(self):
+		if self.is_started:
+			return
+		self.is_started = True
+		#other methods to create game
 
-#Pause game
-def pause():
+	#Pause game
+	def pause(self):
+		if not self.is_started:
+			return
+		self.is_paused = not self.is_paused
+		#save game information
 
-#End game
-def stop():
+	#End game
+	def stop():
+		if not self.is_started:
+			return
+		self.is_started = False
 
-#Player loses all health
-def gameover():
+	#Player loses all health
+	def gameover():
 
-#possibly helper function
-def terminate():
-	pygame.quit()
-	sys.exit()
+	#possibly helper function
+	def terminate():
+		pygame.quit()
+		sys.exit()
 
 
 
