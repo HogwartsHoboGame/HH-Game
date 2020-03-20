@@ -3,7 +3,4 @@ class Train():
         def __init__(self, pass_time, track_num):
               
 
-
-
-class Tracks(): #is this needed?
         
