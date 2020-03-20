@@ -10,7 +10,7 @@ Class HH_Game():
 	#Start game
 	def start(self):
 		#start timer
-		clock = pygame.time.Clock()
+		clock = self.clock
 		if self.is_started:
 			return
 		self.is_started = True
@@ -19,7 +19,7 @@ Class HH_Game():
 
 	#Pause game
 	def pause(self):
-		clock = pygame.time.Clock()
+		clock = self.clock
 		if not self.is_started:
 			return
 		self.is_paused = not self.is_paused
@@ -27,7 +27,7 @@ Class HH_Game():
 
 	#End game
 	def stop():
-		clock = pygame.time.Clock()
+		clock = self.clock
 		if not self.is_started:
 			return
 		self.is_started = False
