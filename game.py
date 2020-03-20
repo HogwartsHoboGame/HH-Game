@@ -34,6 +34,10 @@ Class HH_Game():
 		pygame.quit()
 		sys.exit()
 
+def main():
+	pygame.init()
+	while True:
+		#initialize everything
 
 
 if __name__ == '__main__':
