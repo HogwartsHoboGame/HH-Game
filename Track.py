@@ -1,2 +1,2 @@
-Class Track():
+class Track():
         def __init__(self):
