@@ -5,6 +5,7 @@ Class HH_Game():
 	def __init__(self):
 		self.is_started = False
 		self.is_paused = False
+		self.clock = pygame.time.Clock()
 
 	#Start game
 	def start(self):
