@@ -1,19 +1,29 @@
 import pygame
 
 
-Class Health(object):
-        #def __init__(self):
-        
-        #def update(self):
+Class HH_Game():
+	def __init__(self):
+		self.is_started = False
+		self.is_paused = False
 
+#Start game
+def start():
 
+#Pause game
+def pause():
 
-'''
-def collision(train_position, health):
-  health +- 1
-  return train_position, health
-'''
+#End game
+def stop():
 
+#Player loses all health
+def gameover():
+
+#possibly helper function
 def terminate():
 	pygame.quit()
 	sys.exit()
+
+
+
+if __name__ == '__main__':
+	main()
