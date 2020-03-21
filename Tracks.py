@@ -28,7 +28,7 @@ class Tracks:
         initX = 60
         for track in range(1, self.numberOfTracks+1):
             pygame.draw.rect(self.screen, (150, 150,150), (track*initX, initY, trackWidth, trackHeight))
-            if self.isEmpty(track-1):
+            if not self.isEmpty(track-1):
                 hobo.drawHobo((track*initX+20, 615)) 
 
         for line in range(1, self.numberOfTracks+1):
