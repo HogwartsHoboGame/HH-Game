@@ -2,7 +2,12 @@ import pygame
 
 
 Class HH_Game():
-	def __init__(self):
+	def __init__(self, screenWidth, screenHeight):
+		pygame.init()
+        	pygame.display.set_caption("HH GAME")
+        	self.screenWidth = screenWidth
+        	self.screenHeight = screenHeight
+		self.screen = pygame.display.set_mode((self.screenWidth, self.screenHeight))
 		self.is_started = False
 		self.is_paused = False
 		self.clock = pygame.time.Clock()
@@ -42,7 +47,17 @@ Class HH_Game():
 		sys.exit()
 
 def main():
-	pygame.init()
+	game = HH_Game(700,700)
+    	screen = pygame.display.set_mode((700, 700))
+    	tracks = Tracks.Tracks(10, screen)
+    	tracks.printTracks()
+    	pygame.display.update()
+    	run = True
+    	while run:
+        	pygame.time.delay(100)
+        	for event in pygame.event.get():
+            		if event.type == pygame.QUIT:
+                		run = False
 	while True:
 		#initialize everything
 
