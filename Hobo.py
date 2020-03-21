@@ -1,14 +1,16 @@
 import Tracks
 import numpy as np
+import pygame
 
 class Hobo:
 
     # Initializes a Hobo with a certain health
-    def __init__(self, health, currentTrack):
+    def __init__(self, health, currentTrack, screen):
         self.health = health
         self.currentTrack = currentTrack
-        tracks = Tracks(10)
-        self.numberOfTracks = tracks.getNumberOfTracks()
+        #tracks = Tracks.Tracks(10)
+        #self.numberOfTracks = tracks.getNumberOfTracks()
+        self.screen = screen
 
     # Makes a jump from the current track to another random track
     def jump(self):
@@ -24,5 +26,9 @@ class Hobo:
             self.health = health - 1
         else:
             tracks.setBusy(randomTrack)
+
+    def drawHobo(self, center):
+        pygame.draw.circle(self.screen, (255, 40, 70), center, 15, 3)
+
 
 
