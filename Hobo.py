@@ -21,7 +21,7 @@ class Hobo:
         randomTrack = np.random.poisson(0, self.numberOfTracks)
         
         # Set destination to busy if it's empty
-        # if it's not empty, hobo loses health
+        # if it's not empty, hobo loses health   --------> need to implement an incoming train, hobo only lose health if it gets hit
         if not tracks.isEmpty(randomTrack):
             self.health = health - 1
         else:
