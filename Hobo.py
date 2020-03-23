@@ -27,8 +27,10 @@ class Hobo:
         else:
             tracks.setBusy(randomTrack)
 
-    def drawHobo(self, center):
-        pygame.draw.circle(self.screen, (255, 40, 70), center, 15, 3)
+    def draw(self, center):
+        if not self.isEmpty(track-1):
+            hobo.draw((track*self.initX+20, 615)) 
+            pygame.draw.circle(self.screen, (255, 40, 70), center, 15, 3)
 
 
 
