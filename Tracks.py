@@ -13,11 +13,11 @@ class Tracks:
         self.initY = 30
         self.initX = 60
 
-    def getNumberOfTracks(self):
-        return self.numberOfTracks
+    def getWidth(self):
+        return self.width
 
-    def trackPosition(self, trackNum):
-        return (trackNum*self.initX, self.initY, self.width, self.height)
+    def getHeight(self):
+        return self.height
 
     def setBusy(self, track):
         self.tracks[track] = 1
