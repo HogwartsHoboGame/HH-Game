@@ -28,7 +28,7 @@ class Tracks:
     def isEmpty(self, track):
         return (self.tracks[track] == 0)
 
-    def drawTracks(self):
+    def draw(self):
         hobo = Hobo.Hobo(5, 0, self.screen)
 
         for track in range(1, self.numberOfTracks+1):

@@ -12,20 +12,22 @@ class HH_Game():
         self.screenHeight = screenHeight
         self.screen = pygame.display.set_mode(
             (self.screenWidth, self.screenHeight))
+        self.tracks = Tracks.Tracks(10, self.screen)
         self.fps = 30
         self.trains = []
-        self.tracks = Tracks.Tracks(10, self.screen)
-        self.trains.append(Train.Train(60, 30, 300, self.screen, self.fps))
-        self.trains.append(Train.Train(120, 30, 200, self.screen, self.fps))
-        self.tracks.setBusy(0)
-        self.tracks.setBusy(1)
+        self.addTrains()
         self.is_started = False
         self.is_paused = False
         self.clock = pygame.time.Clock()
 
+    def addTrains(self):
+        self.trains.append(Train.Train(60, 30, 300, self.screen, self.fps))
+        self.trains.append(Train.Train(120, 30, 200, self.screen, self.fps))
+
     # Draw the scene for the game
+
     def draw(self):
-        self.tracks.drawTracks()
+        self.tracks.draw()
         for train in self.trains:
             train.update()
             train.draw()
