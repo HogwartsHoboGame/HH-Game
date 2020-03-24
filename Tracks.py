@@ -10,12 +10,6 @@ class Tracks(Coord):
         self.tracks = [0] * numberOfTracks
         self.screen = screen
 
-    def getWidth(self):
-        return self.width
-
-    def getHeight(self):
-        return self.height
-
     def setBusy(self, track):
         self.tracks[track] = 1
 
