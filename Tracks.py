@@ -1,5 +1,5 @@
 import pygame
-import Hobo
+from Hobo import *
 
 
 class Tracks:
@@ -29,7 +29,6 @@ class Tracks:
         return (self.tracks[track] == 0)
 
     def draw(self):
-        hobo = Hobo.Hobo(5, 0, self.screen)
 
         for track in range(1, self.numberOfTracks+1):
             pygame.draw.rect(self.screen, (150, 150, 150),
