@@ -1,17 +1,14 @@
 import pygame
-from Hobo import *
+from Coord import *
 
 
-class Tracks:
+class Tracks(Coord):
 
-    def __init__(self, numberOfTracks, screen):
+    def __init__(self, x, y, width, height, numberOfTracks, screen):
+        super().__init__(x, y, width, height)
         self.numberOfTracks = numberOfTracks
         self.tracks = [0] * numberOfTracks
         self.screen = screen
-        self.height = 600
-        self.width = 40
-        self.initY = 30
-        self.initX = 60
 
     def getWidth(self):
         return self.width
@@ -32,8 +29,8 @@ class Tracks:
 
         for track in range(1, self.numberOfTracks+1):
             pygame.draw.rect(self.screen, (150, 150, 150),
-                             (track*self.initX, self.initY, self.width, self.height))
+                             (track*self.x, self.y, self.width, self.height))
 
         for line in range(1, self.numberOfTracks+1):
             pygame.draw.line(self.screen, (0, 0, 0),
-                             (0, line*self.initX), (700, line*self.initX), 3)
+                             (0, line*self.x), (700, line*self.x), 3)
