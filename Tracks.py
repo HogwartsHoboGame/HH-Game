@@ -20,7 +20,6 @@ class Tracks(Coord):
         return (self.tracks[track] == 0)
 
     def draw(self):
-
         for track in range(1, self.numberOfTracks+1):
             pygame.draw.rect(self.screen, (150, 150, 150),
                              (track*self.x, self.y, self.width, self.height))

@@ -6,10 +6,11 @@ from Coord import *
 
 class Train(Coord):
     # parameters: time it takes for train to pass, and the track its on
-    def __init__(self, x, y, width, height, speed, screen, fps):
+    def __init__(self, currentTrack, x, y, width, height, speed, screen, fps):
         #self.passTime = passTime
         #self.trackNum = trackNum
         super().__init__(x, y, width, height)
+        self.currentTrack = currentTrack
         self.fps = fps
         self.speed = speed
         self.screen = screen
