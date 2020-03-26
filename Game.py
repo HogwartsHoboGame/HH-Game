@@ -79,7 +79,7 @@ class HH_Game():
         for train in self.trains:
             train.draw()
 
-        # Start game
+    # Start game
     def start(self):
         # start timer
         clock = self.clock
@@ -91,8 +91,8 @@ class HH_Game():
             self.draw()
             pygame.display.update()
             if event.type == pygame.QUIT:
-                break
-            # other methods to create game
+                pygame.quit()
+                sys.exit()
 
     # Pause game
     def pause(self):
@@ -113,10 +113,6 @@ class HH_Game():
     # def gameover():
         # stop and return timer
 
-        # possibly helper function
-    def terminate():
-        pygame.quit()
-        sys.exit()
 
 
 def main():
