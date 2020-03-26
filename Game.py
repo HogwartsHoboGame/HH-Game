@@ -2,6 +2,7 @@ import pygame
 import Tracks
 import Train
 import Hobo
+import Player
 from Coord import *
 import random
 
@@ -15,8 +16,11 @@ class HH_Game():
         self.screen = pygame.display.set_mode(
             (self.screenWidth, self.screenHeight))
         self.tracks = Tracks.Tracks(60, 30, 40, 600, 10, self.screen)
+        # self.player = Player.Player(
+        #    300, self.tracks, 3, 240, 600, 40, 30, self.screen)
         self.tracks.setBusy(0)
         self.tracks.setBusy(1)
+        # self.tracks.setBusy(3)
         self.tracks.setBusy(4)
         self.tracks.setBusy(6)
         self.fps = 30
@@ -32,13 +36,13 @@ class HH_Game():
     def addTrains(self):
         for track in range(1, self.tracks.numberOfTracks+1):
             self.trains.append(Train.Train(
-                track-1, track*self.tracks.x, self.tracks.y, 40, 60, self.speed*track/3, self.screen, self.fps))
+                track-1, track*self.tracks.x, self.tracks.y, self.speed*track/3, self.screen, self.fps))
 
     def addHobos(self):
         for track in range(1, self.tracks.numberOfTracks+1):
             if not (self.tracks.isEmpty(track-1)):
                 self.hobos.append(Hobo.Hobo(
-                    self.tracks, track-1, track*self.tracks.x, self.tracks.height, self.tracks.width, self.tracks.y, self.screen))
+                    self.tracks, track-1, track*self.tracks.x, self.tracks.height, self.screen))
 
     def removeHobos(self):
         for hobo in self.hobos:
@@ -49,11 +53,15 @@ class HH_Game():
         for hobo in self.hobos:
             if hobo.currentTrack == track:
                 return hobo
+            # elif self.player.currentTrack == track:
+            #    return self.player
 
     def getCurrentTracks(self):
         currentTracks = []
         for hobo in self.hobos:
             currentTracks.append(hobo.currentTrack)
+        # if (self.player != None):
+        #    currentTracks.append(self.player.currentTrack)
         return currentTracks
 
     def handleCollision(self):
@@ -68,6 +76,7 @@ class HH_Game():
             train.update()
         for hobo in self.hobos:
             hobo.update()
+        # self.player.update()
 
     # Draw the scene for the game
 
@@ -77,8 +86,10 @@ class HH_Game():
             hobo.draw()
         for train in self.trains:
             train.draw()
+        # if (self.player.health > 0):
+        #    self.player.draw()
 
-            # Start game
+        # Start game
     def start(self):
         # start timer
         clock = self.clock

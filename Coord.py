@@ -13,7 +13,7 @@ class Coord:
         left = self.x
         right = self.x + self.width
         top = self.y
-        bottom = self.y + self.height
+        bottom = self.y + 50
 
         otherLeft = other.x
         otherRight = other.x + other.width

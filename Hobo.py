@@ -6,8 +6,8 @@ from Coord import *
 
 class Hobo(Coord):
     # Initializes a Hobo with a certain health
-    def __init__(self, tracks, currentTrack, x, y, width, height, screen):
-        super().__init__(x, y, width, height)
+    def __init__(self, tracks, currentTrack, x, y, screen):
+        super().__init__(x, y, 0, 0)
         self.tracks = tracks
         self.currentTrack = currentTrack
         self.screen = screen
@@ -17,8 +17,9 @@ class Hobo(Coord):
     def update(self):
         if (self.currentTrack < self.tracks.numberOfTracks):
             self.tracks.setEmpty(self.currentTrack)
+        if (self.random != self.currentTrack):
             self.tracks.setBusy(self.random)
 
     def draw(self):
-        pygame.draw.rect(self.screen, (255, 0, 0),
-                         (self.x, self.y, self.width, self.height))
+        hobo = pygame.image.load("hobo.png")
+        self.screen.blit(hobo, (self.x, self.y))
