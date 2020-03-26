@@ -79,6 +79,26 @@ class HH_Game():
         for train in self.trains:
             train.draw()
 
+'''
+    def intro(): 
+        intro = True
+        while intro:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_c:
+                        intro = False
+                    if event.key == pygame.K_q:
+                        pygame.quit()
+                        quit()
+            self.screen.fill(black)
+            message_to_screen("Welcome to HH-Game", white, -100, "large")
+            message_to_screen("Press C to start game or Q to quit.", white, 25)
+            pygame.display.update()
+    '''
+     
     # Start game
     def start(self):
         # start timer
@@ -96,17 +116,9 @@ class HH_Game():
                     self.is_started = False
                     quit()
                 if event.type == pygame.KEYDOWN:
-                    #press C to play
-                    if event.key == pygame.K_c:
-                        self.is_started = False
-                    #press Q to quit game
-                    if event.key == pygame.K_q:
-                        pygame.quit()
-                        self.is_started = False
-                        quit()
-            self.screen.fill(black)
-            message_to_screen("Welcome to HH-Game", white, -100, "large")
-            message_to_screen("Press C to start game or Q to quit.", white, 25)
+                    #press P to pause
+                    if event.key == pygame.K_p:
+                        pause()
                 
 
     # Pause game
