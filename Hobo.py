@@ -21,5 +21,5 @@ class Hobo(Coord):
             self.tracks.setBusy(self.random)
 
     def draw(self):
-        hobo = pygame.image.load("hobo.png")
+        hobo = pygame.image.load("images/hobo.png")
         self.screen.blit(hobo, (self.x, self.y))

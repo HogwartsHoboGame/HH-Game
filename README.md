@@ -5,7 +5,7 @@ When you give the command to start the game, the trains will start to pass throu
 When you ARE hit by a train (either when the train pass and hit you or when you jump to a track which has a train passing) you lose health. When you lose all your health, the game stops.
 This game is not completed yet, it needs to correct the implementation of the player and the hobo and the interface to start the game.
 
-![](HH-Game.png)
+![](images/HH-Game.png)
 
 ## Installation
 

@@ -19,7 +19,7 @@ class Train(Coord):
     def draw(self):
         # pygame.draw.rect(self.screen, self.color,
         #                 (self.x, self.y, self.width, self.height))
-        train = pygame.image.load("train.png")
+        train = pygame.image.load("images/train.png")
         self.screen.blit(train, (self.x, self.y))
 
     def update(self):
