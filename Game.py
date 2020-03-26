@@ -83,7 +83,8 @@ class HH_Game():
     def start(self):
         # start timer
         clock = self.clock
-        while True:
+        self.is_started = True
+        while self.is_started:
             pygame.time.delay(int(1000/self.fps))
             event = pygame.event.poll()
             self.update()
@@ -92,7 +93,8 @@ class HH_Game():
             pygame.display.update()
             if event.type == pygame.QUIT:
                 pygame.quit()
-                sys.exit()
+                self.is_started = False
+                
 
     # Pause game
     def pause(self):
