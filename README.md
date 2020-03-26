@@ -10,7 +10,7 @@ This game is not completed yet, it needs to correct the implementation of the pl
 ## Installation
 
 You will only need to install python3 in your machine. Follow the guide provided by
-[https://realpython.com/installing-python/][https://realpython.com/installing-python/].
+https://realpython.com/installing-python/
 
 ## Usage example
 
@@ -31,7 +31,7 @@ sudo pip3 install pygame
 ```
 
 It is going to ask your password (because of the sudo command).
-If it did not work you can follow this tutorial on youtube: [https://www.youtube.com/watch?v=E-WhAS6qzsU][https://www.youtube.com/watch?v=e-whas6qzsu]
+If it did not work you can follow this tutorial on youtube: https://www.youtube.com/watch?v=e-whas6qzsu
 
 For Windows 8 to 10:
 
@@ -39,7 +39,7 @@ For Windows 8 to 10:
 pip3 install pygame
 ```
 
-If it did not work you can follow this tutorial on youtube: [https://www.youtube.com/watch?v=AdUZArA-kZw][https://www.youtube.com/watch?v=aduzara-kzw]
+If it did not work you can follow this tutorial on youtube: https://www.youtube.com/watch?v=aduzara-kzw
 
 ## Contributors
 
