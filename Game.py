@@ -86,15 +86,27 @@ class HH_Game():
         self.is_started = True
         while self.is_started:
             pygame.time.delay(int(1000/self.fps))
-            event = pygame.event.poll()
             self.update()
             self.handleCollision()
             self.draw()
             pygame.display.update()
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                self.is_started = False
-                quit()
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    self.is_started = False
+                    quit()
+                if event.type == pygame.KEYDOWN:
+                    #press C to play
+                    if event.key == pygame.K_c:
+                        self.is_started = False
+                    #press Q to quit game
+                    if event.key == pygame.K_q:
+                        pygame.quit()
+                        self.is_started = False
+                        quit()
+            self.screen.fill(black)
+            message_to_screen("Welcome to HH-Game", white, -100, "large")
+            message_to_screen("Press C to start game or Q to quit.", white, 25)
                 
 
     # Pause game
@@ -114,7 +126,7 @@ class HH_Game():
                         quit()
             # display pause screen
             self.screen.fill(black)
-            message_to_screen("Paused", white, -100, size="large")
+            message_to_screen("Paused", white, -100, "large")
             message_to_screen("Press C to continue or Q to quit.", white, 25)
             pygame.display.update()
 
@@ -128,6 +140,15 @@ class HH_Game():
     # Player loses all health
     # def gameover():
         # stop and return timer
+
+def text_objects(text, color, size):
+    if size == "small":
+        textSurface = smallfont.render(text, True, color)
+    elif size == "medium":
+        textSurface = medfont.render(text, True, color)
+    elif size == "large":
+        textSurface = largefont.render(text, True, color)    
+    return textSurface, textSurface.get_rect()
 
 def message_to_screen(msg, color, y_displace=0, size = "small"):
     textSurf, textRect = text_objects(msg, color, size)
