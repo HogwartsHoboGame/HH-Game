@@ -17,7 +17,6 @@ class Hobo(Coord):
     def update(self):
         if (self.currentTrack < self.tracks.numberOfTracks):
             self.tracks.setEmpty(self.currentTrack)
-        if (self.random != self.currentTrack):
             self.tracks.setBusy(self.random)
 
     def draw(self):
