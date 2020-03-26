@@ -94,15 +94,25 @@ class HH_Game():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 self.is_started = False
+                quit()
                 
 
     # Pause game
     def pause(self):
         clock = self.clock
-        if not self.is_started:
-            return
-        self.is_paused = not self.is_paused
-        # save game information, pause timer
+        self.is_paused = True
+        while self.is_paused:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()
+                if event.type = pygame.KEYDOWN:
+                    if event.key == pygame.K_c:
+                        self.is_paused = False
+                    elif event.key == pygame.K_q:
+                        pygame.quit()
+                        quit()
+        # display pause screen
 
     # End game
     def stop():
