@@ -129,13 +129,7 @@ class HH_Game():
             message_to_screen("Paused", white, -100, "large")
             message_to_screen("Press C to continue or Q to quit.", white, 25)
             pygame.display.update()
-
-    # End game
-    def stop():
-        clock = self.clock
-        if not self.is_started:
-            return
-        self.is_started = False
+ 
 
     # Player loses all health
     # def gameover():
