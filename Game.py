@@ -112,7 +112,7 @@ class HH_Game():
                     pygame.quit()
                     quit()
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_c:
+                    if event.key == pygame.K_s:
                         self.is_started = True
                         self.is_paused = False
                     elif event.key == pygame.K_q:
@@ -126,7 +126,7 @@ class HH_Game():
         self.message_to_screen("Welcome to Hogwarts Hobo Game!",
                                (255, 255, 255), -100, "medium")
         self.message_to_screen(
-            "Press C to start the game!", (255, 255, 255), 25)
+            "Press S to start the game!", (255, 255, 255), 25)
 
     # Pause game
 
