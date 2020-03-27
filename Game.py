@@ -8,64 +8,64 @@ import random
 
 
 class HH_Game():
-    def __init__(self, screenWidth, screenHeight):
+    def __init__(self, screen_width, screen_height):
         pygame.init()
         pygame.display.set_caption("HH GAME")
-        self.screenWidth = screenWidth
-        self.screenHeight = screenHeight
+        self.screen_width = screen_width
+        self.screen_height = screen_height
         self.screen = pygame.display.set_mode(
-            (self.screenWidth, self.screenHeight))
-        self.smallfont = pygame.font.SysFont("arial", 25)
-        self.medfont = pygame.font.SysFont("arial", 40)
-        self.largefont = pygame.font.SysFont("arial", 80)
+            (self.screen_width, self.screen_height))
+        self.small_font = pygame.font.SysFont("arial", 25)
+        self.med_font = pygame.font.SysFont("arial", 40)
+        self.large_font = pygame.font.SysFont("arial", 80)
         self.tracks = Tracks.Tracks(60, 30, 40, 600, 10, self.screen)
-        self.tracks.setBusy(0)
-        self.tracks.setBusy(1)
-        self.tracks.setBusy(4)
-        self.tracks.setBusy(6)
+        self.tracks.set_busy(0)
+        self.tracks.set_busy(1)
+        self.tracks.set_busy(4)
+        self.tracks.set_busy(6)
         self.fps = 30
         self.speed = 150
         self.hobos = []
-        self.addHobos()
+        self.add_hobos()
         self.trains = []
-        self.addTrains()
+        self.add_trains()
         self.is_started = False
         self.is_paused = False
         self.clock = pygame.time.Clock()
 
-    def addTrains(self):
-        for track in range(1, self.tracks.numberOfTracks+1):
+    def add_trains(self):
+        for track in range(1, self.tracks.number_of_tracks+1):
             self.trains.append(Train.Train(
                 track-1, track*self.tracks.x, self.tracks.y, self.speed*track/3, self.screen, self.fps))
 
-    def addHobos(self):
-        for track in range(1, self.tracks.numberOfTracks+1):
-            if not (self.tracks.isEmpty(track-1)):
+    def add_hobos(self):
+        for track in range(1, self.tracks.number_of_tracks+1):
+            if not (self.tracks.is_empty(track-1)):
                 self.hobos.append(Hobo.Hobo(
                     self.tracks, track-1, track*self.tracks.x, self.tracks.height, self.screen))
 
-    def removeHobos(self):
+    def remove_hobos(self):
         for hobo in self.hobos:
-            if (self.tracks.isEmpty(hobo.currentTrack)):
+            if (self.tracks.is_empty(hobo.current_track)):
                 self.hobos.remove(hobo)
 
-    def getHobo(self, track):
+    def get_hobo(self, track):
         for hobo in self.hobos:
-            if hobo.currentTrack == track:
+            if hobo.current_track == track:
                 return hobo
 
-    def getCurrentTracks(self):
-        currentTracks = []
+    def get_current_tracks(self):
+        current_tracks = []
         for hobo in self.hobos:
-            currentTracks.append(hobo.currentTrack)
-        return currentTracks
+            current_tracks.append(hobo.current_track)
+        return current_tracks
 
-    def handleCollision(self):
-        for track in self.getCurrentTracks():
-            if (self.getHobo(track) != None and self.trains[track].almostIntersect(self.getHobo(track))):
+    def handle_collision(self):
+        for track in self.get_current_tracks():
+            if (self.get_hobo(track) != None and self.trains[track].almost_intersect(self.get_hobo(track))):
                 self.trains[track].y = 40
-                self.removeHobos()
-                self.addHobos()
+                self.remove_hobos()
+                self.add_hobos()
 
     def update(self):
         for train in self.trains:
@@ -91,7 +91,7 @@ class HH_Game():
         while self.is_started:
             pygame.time.delay(int(1000/self.fps))
             self.update()
-            self.handleCollision()
+            self.handle_collision()
             self.draw()
             pygame.display.update()
             for event in pygame.event.get():
@@ -155,18 +155,18 @@ class HH_Game():
 
     def text_objects(self, text, color, size):
         if size == "small":
-            textSurface = self.smallfont.render(text, True, color)
+            text_surface = self.small_font.render(text, True, color)
         elif size == "medium":
-            textSurface = self.medfont.render(text, True, color)
+            text_surface = self.med_font.render(text, True, color)
         elif size == "large":
-            textSurface = self.largefont.render(text, True, color)
-        return textSurface, textSurface.get_rect()
+            text_surface = self.large_font.render(text, True, color)
+        return text_surface, text_surface.get_rect()
 
     def message_to_screen(self, msg, color, y_displace=0, size="small"):
-        textSurf, textRect = self.text_objects(msg, color, size)
-        textRect.center = (
-            self.screenWidth / 2), (self.screenHeight / 2) + y_displace
-        self.screen.blit(textSurf, textRect)
+        text_surf, text_rect = self.text_objects(msg, color, size)
+        text_rect.center = (
+            self.screen_width / 2), (self.screen_height / 2) + y_displace
+        self.screen.blit(text_surf, text_rect)
 
 
 def main():

@@ -6,9 +6,9 @@ from Coord import *
 
 class Train(Coord):
 
-    def __init__(self, currentTrack, x, y, speed, screen, fps):
+    def __init__(self, current_track, x, y, speed, screen, fps):
         super().__init__(x, y, 0, 0)
-        self.currentTrack = currentTrack
+        self.current_track = current_track
         self.fps = fps
         self.speed = speed
         self.screen = screen

@@ -9,15 +9,8 @@ class Coord:
         self.width = width
         self.height = height
 
-    def almostIntersect(self, other):
-        left = self.x
-        right = self.x + self.width
-        top = self.y
+    def almost_intersect(self, other):
         bottom = self.y + 50
+        other_top = other.y
 
-        otherLeft = other.x
-        otherRight = other.x + other.width
-        otherTop = other.y
-        otherBottom = other.y + other.height
-
-        return not (bottom <= otherTop-10)
+        return not (bottom <= other_top-10)
