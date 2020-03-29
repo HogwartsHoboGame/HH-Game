@@ -3,7 +3,7 @@
 This application consists in a game which is made by 10 tracks, 10 trains and some Hobos. The objective of the game is to stay alive as long as possible. You are going to be the blue square printed on the third lane.
 When you give the command to start the game, the trains will start to pass through the lanes (tracks) and you and the other hobos are going to jump through tracks when almost hit by the train in the current track.
 When you ARE hit by a train (either when the train pass and hit you or when you jump to a track which has a train passing) you lose health. When you lose all your health, the game stops.
-This game is not completed yet, it needs to correct the implementation of the player and the hobo and the interface to start the game.
+This game is not completed yet, it needs some improvements to the player class, which will be your Hobo. 
 
 ![](images/HH-Game.png)
 
