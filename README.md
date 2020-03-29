@@ -46,7 +46,7 @@ If it did not work you can follow this tutorial on youtube: https://www.youtube.
 <table>
   <tr>
     <td><a href="https://github.com/FilipeGorodscy"><img src="https://avatars0.githubusercontent.com/u/53091098?s=460&u=d3e992090857c9e4e4a556ee272e227c4fba51e4&v=4"/></a></td>
-    <td><b>Filipe Gorodscy</b> — Responsible for most of the coding part of the project including the code design. Worked hard to learn and implement pygame library (which is a python library useful for making games). Responsible for the "Introduction" and "Stories done" parts of the Product Backlog. Organized and led the group to work in the best way possible with the Agile approach. Therefore, designed some of the diagrams to make it easier for everyone to understand the project. In addition, constructed this readme using Markdown and some html.</td>
+    <td><b>Filipe Gorodscy</b> — Responsible for most of the coding part of the project including the code design. Worked hard to learn and implement pygame library (which is a python library useful for making games). Responsible for the "Introduction" and "Stories done" parts of the Product Backlog. Filipe has organized and led the group to work in the best way possible with the Agile approach. Therefore, designed some of the diagrams to make it easier for everyone to understand the project. In addition, built this readme using Markdown and some html.</td>
   </tr>
   <tr>
   <td><a href="https://github.com/Shirley-qiu"><img src="https://avatars0.githubusercontent.com/u/46514410?s=460&u=0e419674bea4056183b3e7c55bb2c99c531c93f1&v=4"/></a></td>
