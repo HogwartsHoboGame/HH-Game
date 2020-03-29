@@ -14,3 +14,9 @@ class Coord:
         other_top = other.y
 
         return not (bottom <= other_top-10)
+
+    def intersects(self, other):
+        bottom = self.y + 50
+        other_top = other.y
+
+        return not (bottom <= other_top)

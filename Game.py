@@ -17,6 +17,7 @@ class HH_Game():
             (self.screen_width, self.screen_height))
         self.set_fonts()
         self.reset_game()
+        self.health = 30
         self.is_started = False
 
     def set_fonts(self):
@@ -72,6 +73,8 @@ class HH_Game():
                 self.trains[track].y = 40
                 self.remove_hobos()
                 self.add_hobos()
+                if self.health > 0:
+                    self.health -= 1
 
     def update(self):
         for train in self.trains:
@@ -98,9 +101,11 @@ class HH_Game():
             self.update()
             self.handle_collision()
             self.draw()
+            self.message_to_screen(
+                "Health = " + str(self.health), (255, 255, 255), -330, "small")
             pygame.display.update()
             for event in pygame.event.get():
-                if event.type == pygame.QUIT:
+                if event.type == pygame.QUIT or self.health == 0:
                     pygame.quit()
                     self.is_started = False
                     quit()
@@ -110,6 +115,9 @@ class HH_Game():
                         self.pause()
                     if event.key == pygame.K_m:
                         self.display_start_screen()
+                    if event.key == pygame.K_q:
+                        pygame.quit()
+                        quit()
 
     def display_start_screen(self):
         self.is_paused = True
@@ -159,6 +167,8 @@ class HH_Game():
         self.message_to_screen("Paused", (255, 255, 255), -100, "large")
         self.message_to_screen(
             "Press C to continue, M to return no main menu or Q to quit.", (255, 255, 255), 25)
+        self.message_to_screen(
+            "Health = " + str(self.health), (255, 255, 255), -330, "small")
 
     def text_objects(self, text, color, size):
         if size == "small":
