@@ -15,9 +15,16 @@ class HH_Game():
         self.screen_height = screen_height
         self.screen = pygame.display.set_mode(
             (self.screen_width, self.screen_height))
+        self.set_fonts()
+        self.reset_game()
+        self.is_started = False
+
+    def set_fonts(self):
         self.small_font = pygame.font.SysFont("arial", 25)
         self.med_font = pygame.font.SysFont("arial", 40)
         self.large_font = pygame.font.SysFont("arial", 80)
+
+    def reset_game(self):
         self.tracks = Tracks.Tracks(60, 30, 40, 600, 10, self.screen)
         self.tracks.set_busy(0)
         self.tracks.set_busy(1)
@@ -29,9 +36,8 @@ class HH_Game():
         self.add_hobos()
         self.trains = []
         self.add_trains()
-        self.is_started = False
+        self.is_started = True
         self.is_paused = False
-        self.clock = pygame.time.Clock()
 
     def add_trains(self):
         for track in range(1, self.tracks.number_of_tracks+1):
@@ -86,7 +92,6 @@ class HH_Game():
     # Start game
     def start(self):
         # start timer
-        clock = self.clock
         self.display_start_screen()
         while self.is_started:
             pygame.time.delay(int(1000/self.fps))
@@ -103,6 +108,8 @@ class HH_Game():
                     # press P to pause
                     if event.key == pygame.K_p:
                         self.pause()
+                    if event.key == pygame.K_m:
+                        self.display_start_screen()
 
     def display_start_screen(self):
         self.is_paused = True
@@ -113,8 +120,7 @@ class HH_Game():
                     quit()
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_s:
-                        self.is_started = True
-                        self.is_paused = False
+                        self.reset_game()
                     elif event.key == pygame.K_q:
                         pygame.quit()
                         quit()
@@ -126,12 +132,11 @@ class HH_Game():
         self.message_to_screen("Welcome to Hogwarts Hobo Game!",
                                (255, 255, 255), -100, "medium")
         self.message_to_screen(
-            "Press S to start the game!", (255, 255, 255), 25)
+            "Press S to start the game and Q to quit.", (255, 255, 255), 25)
 
     # Pause game
 
     def pause(self):
-        clock = self.clock
         self.is_paused = True
         while self.is_paused:
             for event in pygame.event.get():
@@ -141,6 +146,8 @@ class HH_Game():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_c:
                         self.is_paused = False
+                    elif event.key == pygame.K_m:
+                        self.display_start_screen()
                     elif event.key == pygame.K_q:
                         pygame.quit()
                         quit()
@@ -151,7 +158,7 @@ class HH_Game():
         self.screen.fill((0, 0, 0))
         self.message_to_screen("Paused", (255, 255, 255), -100, "large")
         self.message_to_screen(
-            "Press C to continue or Q to quit.", (255, 255, 255), 25)
+            "Press C to continue, M to return no main menu or Q to quit.", (255, 255, 255), 25)
 
     def text_objects(self, text, color, size):
         if size == "small":
