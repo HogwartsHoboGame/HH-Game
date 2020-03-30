@@ -94,7 +94,6 @@ class HH_Game():
 
     # Start game
     def start(self):
-        # start timer
         self.display_start_screen()
         while self.is_started:
             pygame.time.delay(int(1000/self.fps))
@@ -103,9 +102,12 @@ class HH_Game():
             self.draw()
             self.message_to_screen(
                 "Health = " + str(self.health), (255, 255, 255), -330, "small")
+            if self.health == 0:
+                self.is_started = False
+                quit()
             pygame.display.update()
             for event in pygame.event.get():
-                if event.type == pygame.QUIT or self.health == 0:
+                if event.type == pygame.QUIT:
                     pygame.quit()
                     self.is_started = False
                     quit()
