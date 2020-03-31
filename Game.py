@@ -12,21 +12,26 @@ import random
 class HH_Game():
     def __init__(self, screen_width, screen_height):
         pygame.init()
+        # Set screen dimensions
         pygame.display.set_caption("HH GAME")
-        self.sounds = Sounds.Sounds()
-        self.crash_sound = self.sounds.crash_sound
-        self.sounds.background_music()
         self.screen_width = screen_width
         self.screen_height = screen_height
         self.screen = pygame.display.set_mode(
             (self.screen_width, self.screen_height))
+        # Set game (number of tracks and hobos)
         self.set_game()
         self.health = 30
+        self.is_started = False
+        # Set sounds
+        self.sounds = Sounds.Sounds()
+        self.crash_sound = self.sounds.crash_sound
+        self.sounds.background_music()
+        # Set messages that will go to the screen
         self.messages = Messages.Messages(
             self.screen_width, self.screen_height, self.screen, self.health)
         self.messages.set_fonts()
-        self.is_started = False
 
+    # Set game -- how many tracks, hobos and trains at a given speed.
     def set_game(self):
         self.tracks = Tracks.Tracks(60, 30, 40, 600, 10, self.screen)
         self.tracks.set_busy(0)
@@ -42,33 +47,39 @@ class HH_Game():
         self.is_started = True
         self.is_paused = False
 
+    # Add trains to the game
     def add_trains(self):
         for track in range(1, self.tracks.number_of_tracks+1):
             self.trains.append(Train.Train(
                 track-1, track*self.tracks.x, self.tracks.y, self.speed*track/3, self.screen, self.fps))
 
+    # Add hobos to the game
     def add_hobos(self):
         for track in range(1, self.tracks.number_of_tracks+1):
             if not (self.tracks.is_empty(track-1)):
                 self.hobos.append(Hobo.Hobo(
                     self.tracks, track-1, track*self.tracks.x, self.tracks.height, self.screen))
 
+    # Remove hobos if the track should be empty
     def remove_hobos(self):
         for hobo in self.hobos:
             if (self.tracks.is_empty(hobo.current_track)):
                 self.hobos.remove(hobo)
 
+    # Returns the hobo in a given track
     def get_hobo(self, track):
         for hobo in self.hobos:
             if hobo.current_track == track:
                 return hobo
 
+    # Returns the current tracks of each hobo in the game
     def get_current_tracks(self):
         current_tracks = []
         for hobo in self.hobos:
             current_tracks.append(hobo.current_track)
         return current_tracks
 
+    # Handles collision between trains and hobos
     def handle_collision(self):
         for track in self.get_current_tracks():
             if (self.get_hobo(track) != None and self.trains[track].almost_intersect(self.get_hobo(track))):
@@ -79,6 +90,7 @@ class HH_Game():
                 if self.health > 0:
                     self.health -= 1
 
+    # Updates position of hobos and trains
     def update(self):
         for train in self.trains:
             train.update()
@@ -86,7 +98,6 @@ class HH_Game():
             hobo.update()
 
     # Draw the scene for the game
-
     def draw(self):
         self.screen.fill((0, 0, 0))
         self.tracks.draw()
@@ -126,6 +137,7 @@ class HH_Game():
                         pygame.quit()
                         quit()
 
+    # Helper method to display the starting screen
     def display_start_screen(self):
         self.is_paused = True
         while self.is_paused:
