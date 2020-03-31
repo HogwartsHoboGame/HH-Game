@@ -1,5 +1,7 @@
 import pygame
 import Tracks
+import Messages
+import Sounds
 import Train
 import Hobo
 import Player
@@ -11,21 +13,21 @@ class HH_Game():
     def __init__(self, screen_width, screen_height):
         pygame.init()
         pygame.display.set_caption("HH GAME")
+        self.sounds = Sounds.Sounds()
+        self.crash_sound = self.sounds.crash_sound
+        self.sounds.background_music()
         self.screen_width = screen_width
         self.screen_height = screen_height
         self.screen = pygame.display.set_mode(
             (self.screen_width, self.screen_height))
-        self.set_fonts()
-        self.reset_game()
+        self.set_game()
         self.health = 30
+        self.messages = Messages.Messages(
+            self.screen_width, self.screen_height, self.screen, self.health)
+        self.messages.set_fonts()
         self.is_started = False
 
-    def set_fonts(self):
-        self.small_font = pygame.font.SysFont("arial", 25)
-        self.med_font = pygame.font.SysFont("arial", 40)
-        self.large_font = pygame.font.SysFont("arial", 80)
-
-    def reset_game(self):
+    def set_game(self):
         self.tracks = Tracks.Tracks(60, 30, 40, 600, 10, self.screen)
         self.tracks.set_busy(0)
         self.tracks.set_busy(1)
@@ -70,6 +72,7 @@ class HH_Game():
     def handle_collision(self):
         for track in self.get_current_tracks():
             if (self.get_hobo(track) != None and self.trains[track].almost_intersect(self.get_hobo(track))):
+                pygame.mixer.Sound.play(self.crash_sound)
                 self.trains[track].y = 40
                 self.remove_hobos()
                 self.add_hobos()
@@ -100,7 +103,7 @@ class HH_Game():
             self.update()
             self.handle_collision()
             self.draw()
-            self.message_to_screen(
+            self.messages.message_to_screen(
                 "Health = " + str(self.health), (255, 255, 255), -330, "small")
             if self.health == 0:
                 self.is_started = False
@@ -114,8 +117,10 @@ class HH_Game():
                 if event.type == pygame.KEYDOWN:
                     # press P to pause
                     if event.key == pygame.K_p:
+                        self.sounds.background_music()
                         self.pause()
                     if event.key == pygame.K_m:
+                        self.sounds.background_music()
                         self.display_start_screen()
                     if event.key == pygame.K_q:
                         pygame.quit()
@@ -130,22 +135,15 @@ class HH_Game():
                     quit()
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_s:
-                        self.reset_game()
+                        self.set_game()
+                        self.sounds.trains_music()
                     elif event.key == pygame.K_q:
                         pygame.quit()
                         quit()
-            self.start_screen()
+            self.messages.start_screen()
             pygame.display.update()
 
-    def start_screen(self):
-        self.screen.fill((0, 0, 0))
-        self.message_to_screen("Welcome to Hogwarts Hobo Game!",
-                               (255, 255, 255), -100, "medium")
-        self.message_to_screen(
-            "Press S to start the game and Q to quit.", (255, 255, 255), 25)
-
     # Pause game
-
     def pause(self):
         self.is_paused = True
         while self.is_paused:
@@ -156,36 +154,15 @@ class HH_Game():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_c:
                         self.is_paused = False
+                        self.sounds.trains_music()
                     elif event.key == pygame.K_m:
+                        self.sounds.background_music()
                         self.display_start_screen()
                     elif event.key == pygame.K_q:
                         pygame.quit()
                         quit()
-            self.pause_screen()
+            self.messages.pause_screen()
             pygame.display.update()
-
-    def pause_screen(self):
-        self.screen.fill((0, 0, 0))
-        self.message_to_screen("Paused", (255, 255, 255), -100, "large")
-        self.message_to_screen(
-            "Press C to continue, M to return no main menu or Q to quit.", (255, 255, 255), 25)
-        self.message_to_screen(
-            "Health = " + str(self.health), (255, 255, 255), -330, "small")
-
-    def text_objects(self, text, color, size):
-        if size == "small":
-            text_surface = self.small_font.render(text, True, color)
-        elif size == "medium":
-            text_surface = self.med_font.render(text, True, color)
-        elif size == "large":
-            text_surface = self.large_font.render(text, True, color)
-        return text_surface, text_surface.get_rect()
-
-    def message_to_screen(self, msg, color, y_displace=0, size="small"):
-        text_surf, text_rect = self.text_objects(msg, color, size)
-        text_rect.center = (
-            self.screen_width / 2), (self.screen_height / 2) + y_displace
-        self.screen.blit(text_surf, text_rect)
 
 
 def main():
