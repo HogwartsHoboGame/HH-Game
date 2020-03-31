@@ -5,7 +5,6 @@ import Sounds
 import Train
 import Hobo
 import Player
-from Coord import *
 import random
 
 
