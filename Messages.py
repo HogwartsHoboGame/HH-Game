@@ -32,6 +32,11 @@ class Messages():
             "Health = " + str(self.health), (255, 255, 255), -330, "small")
         pygame.display.update()
 
+    def to_running_screen(self):
+        self.to_screen(
+            "Health = " + str(self.health), (255, 255, 255), -330, "small")
+        pygame.display.update()
+
     def text_objects(self, text, color, size):
         if size == "small":
             text_surface = self.small_font.render(text, True, color)
