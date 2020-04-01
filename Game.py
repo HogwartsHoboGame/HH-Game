@@ -20,7 +20,6 @@ class HH_Game():
         # Set game (number of tracks and hobos)
         self.set_game()
         self.health = 30
-        self.is_started = False
         # Set sounds
         self.sounds = Sounds.Sounds()
         self.crash_sound = self.sounds.crash_sound
@@ -43,8 +42,9 @@ class HH_Game():
         self.add_hobos()
         self.trains = []
         self.add_trains()
+        self.init_screen = True
         self.is_started = True
-        self.is_paused = False
+        self.is_pause = True
 
     # Add trains to the game
     def add_trains(self):
@@ -107,73 +107,64 @@ class HH_Game():
 
     # Start game
     def start(self):
-        self.display_start_screen()
         while self.is_started:
-            pygame.time.delay(int(1000/self.fps))
-            self.update()
-            self.handle_collision()
-            self.draw()
-            self.messages.message_to_screen(
-                "Health = " + str(self.health), (255, 255, 255), -330, "small")
-            if self.health == 0:
-                self.is_started = False
+            self.event_loop()
+            if self.is_pause and self.init_screen:
+                self.messages.to_start_screen()
+            elif self.is_pause and (not self.init_screen):
+                self.messages.to_pause_screen()
+            else:
+                self.running()
+
+    def event_loop(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
                 quit()
-            pygame.display.update()
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    self.is_started = False
-                    quit()
-                if event.type == pygame.KEYDOWN:
-                    # press P to pause
-                    if event.key == pygame.K_p:
-                        self.sounds.background_music()
-                        self.pause()
-                    if event.key == pygame.K_m:
-                        self.sounds.background_music()
-                        self.display_start_screen()
-                    if event.key == pygame.K_q:
-                        pygame.quit()
-                        quit()
-
-    # Helper method to display the starting screen
-    def display_start_screen(self):
-        self.is_paused = True
-        while self.is_paused:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_s:
+                    self.run()
+                elif event.key == pygame.K_p:
+                    self.pause()
+                elif event.key == pygame.K_c:
+                    self.continue_playing()
+                elif event.key == pygame.K_m:
+                    self.main_menu()
+                elif event.key == pygame.K_q:
                     pygame.quit()
                     quit()
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_s:
-                        self.set_game()
-                        self.sounds.trains_music()
-                    elif event.key == pygame.K_q:
-                        pygame.quit()
-                        quit()
-            self.messages.start_screen()
-            pygame.display.update()
 
-    # Pause game
+    def running(self):
+        pygame.time.delay(int(1000/self.fps))
+        self.update()
+        self.handle_collision()
+        self.draw()
+        self.messages.to_screen(
+            "Health = " + str(self.health), (255, 255, 255), -330, "small")
+        if self.health == 0:
+            pygame.quit()
+            quit()
+        pygame.display.update()
+
+    def run(self):
+        self.set_game()
+        self.init_screen = False
+        self.is_pause = False
+        self.sounds.trains_music()
+
     def pause(self):
-        self.is_paused = True
-        while self.is_paused:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    quit()
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_c:
-                        self.is_paused = False
-                        self.sounds.trains_music()
-                    elif event.key == pygame.K_m:
-                        self.sounds.background_music()
-                        self.display_start_screen()
-                    elif event.key == pygame.K_q:
-                        pygame.quit()
-                        quit()
-            self.messages.pause_screen()
-            pygame.display.update()
+        self.sounds.background_music()
+        self.is_pause = True
+        self.init_screen = False
+
+    def main_menu(self):
+        self.sounds.background_music()
+        self.init_screen = True
+        self.start()
+
+    def continue_playing(self):
+        self.is_pause = False
+        self.sounds.trains_music()
 
 
 def main():
