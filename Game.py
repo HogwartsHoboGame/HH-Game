@@ -139,7 +139,8 @@ class HH_Game():
         self.update()
         self.handle_collision()
         self.draw()
-        self.messages.to_running_screen()
+        self.messages.to_screen(
+            "Health = " + str(self.health), (255, 255, 255), -330, "small")
         if self.health == 0:
             pygame.quit()
             quit()
