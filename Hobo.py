@@ -15,8 +15,12 @@ class Hobo(Coord):
 
     # Makes a jump from the current track to another random track
     def update(self):
-        if (self.current_track < self.tracks.number_of_tracks):
+        if (self.current_track < self.tracks.number_of_tracks-1):
             self.tracks.set_empty(self.current_track)
+        if self.current_track == 9:
+            self.tracks.set_empty(9)
+            self.tracks.set_busy(0)
+        else:
             self.tracks.set_busy(self.random)
 
     def draw(self):

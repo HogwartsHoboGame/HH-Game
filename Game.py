@@ -34,8 +34,8 @@ class HH_Game():
         self.tracks = Tracks.Tracks(60, 30, 40, 600, 10, self.screen)
         self.tracks.set_busy(0)
         self.tracks.set_busy(1)
-        self.tracks.set_busy(4)
-        self.tracks.set_busy(6)
+        self.tracks.set_busy(8)
+        self.tracks.set_busy(9)
         self.fps = 30
         self.speed = 150
         self.hobos = []
@@ -55,9 +55,14 @@ class HH_Game():
     # Add hobos to the game
     def add_hobos(self):
         for track in range(1, self.tracks.number_of_tracks+1):
+            if len(self.hobos) >= 4:
+                return
             if not (self.tracks.is_empty(track-1)):
                 self.hobos.append(Hobo.Hobo(
                     self.tracks, track-1, track*self.tracks.x, self.tracks.height, self.screen))
+            else:
+                if (self.get_hobo(track-1) != None):
+                    self.hobos.remove(self.get_hobo(track-1))
 
     # Remove hobos if the track should be empty
     def remove_hobos(self):
@@ -84,8 +89,8 @@ class HH_Game():
             if (self.get_hobo(track) != None and self.trains[track].almost_intersect(self.get_hobo(track))):
                 pygame.mixer.Sound.play(self.crash_sound)
                 self.trains[track].y = 40
-                self.remove_hobos()
                 self.add_hobos()
+                self.remove_hobos()
                 if self.health > 0:
                     self.health -= 1
 
