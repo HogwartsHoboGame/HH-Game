@@ -44,7 +44,7 @@ class HH_Game():
         self.add_trains()
         self.init_screen = True
         self.is_started = True
-        self.is_pause = True
+        self.is_paused = True
 
     # Add trains to the game
     def add_trains(self):
@@ -114,9 +114,9 @@ class HH_Game():
     def start(self):
         while self.is_started:
             self.event_loop()
-            if self.is_pause and self.init_screen:
+            if self.is_paused and self.init_screen:
                 self.messages.to_start_screen()
-            elif self.is_pause and (not self.init_screen):
+            elif self.is_paused and (not self.init_screen):
                 self.messages.to_pause_screen()
             else:
                 self.running()
@@ -127,13 +127,13 @@ class HH_Game():
                 pygame.quit()
                 quit()
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_s:
+                if event.key == pygame.K_s and self.init_screen:
                     self.run()
-                elif event.key == pygame.K_p:
+                elif event.key == pygame.K_p and not self.init_screen:
                     self.pause()
-                elif event.key == pygame.K_c:
+                elif event.key == pygame.K_c and self.is_paused and not self.init_screen:
                     self.continue_playing()
-                elif event.key == pygame.K_m:
+                elif event.key == pygame.K_m and not self.init_screen:
                     self.main_menu()
                 elif event.key == pygame.K_q:
                     pygame.quit()
@@ -154,21 +154,22 @@ class HH_Game():
     def run(self):
         self.set_game()
         self.init_screen = False
-        self.is_pause = False
+        self.is_paused = False
         self.sounds.trains_music()
 
     def pause(self):
         self.sounds.background_music()
-        self.is_pause = True
+        self.is_paused = True
         self.init_screen = False
 
     def main_menu(self):
         self.sounds.background_music()
+        self.is_paused = True
         self.init_screen = True
         self.start()
 
     def continue_playing(self):
-        self.is_pause = False
+        self.is_paused = False
         self.sounds.trains_music()
 
 
