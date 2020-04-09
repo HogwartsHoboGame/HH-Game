@@ -9,7 +9,7 @@ This game is not completed yet, it needs some improvements to the player class, 
 
 ## Installation
 
-You will only need to install python3 in your machine. Follow the guide provided by
+You will only need to install python3.7 in your machine. Follow the guide provided by
 https://realpython.com/installing-python/
 
 ## Usage example
@@ -22,12 +22,12 @@ python3 game.py
 
 ## Development setup
 
-The only dependency you will need to install is pygame. It is very simple to install it. After you install python3, you will have the "pip3" command installed as well. So you will need to run:
+The only dependency you will need to install is pygame. It is very simple to install it. After you install python3, you will have the "pip" command installed as well. So you will need to run:
 
 For MacOS:
 
 ```sh
-sudo pip3 install pygame
+python3 -m pip install pygame==2.0.0.dev6
 ```
 
 It is going to ask your password (because of the sudo command).
@@ -36,7 +36,7 @@ If it did not work you can follow this tutorial on youtube: https://www.youtube.
 For Windows 8 to 10:
 
 ```sh
-pip3 install pygame
+python3 -m pip install pygame==2.0.0.dev6
 ```
 
 If it did not work you can follow this tutorial on youtube: https://www.youtube.com/watch?v=aduzara-kzw
