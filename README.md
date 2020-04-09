@@ -24,15 +24,7 @@ python3 game.py
 
 The only dependency you will need to install is pygame. It is very simple to install it. After you install python3, you will have the "pip" command installed as well. So you will need to run:
 
-For MacOS:
-
-```sh
-python3 -m pip install pygame==2.0.0.dev6
-```
-
-It is going to ask your password (because of the sudo command).
-
-For Windows 8 to 10:
+For MacOS/Linux/Windows:
 
 ```sh
 python3 -m pip install pygame==2.0.0.dev6
