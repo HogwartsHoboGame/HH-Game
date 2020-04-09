@@ -9,12 +9,12 @@ This game is not completed yet, it needs some improvements to the player class, 
 
 ## Installation
 
-You will only need to install python3.7 in your machine. Follow the guide provided by
+You will need to install python3 in your machine. Follow the guide provided by
 https://realpython.com/installing-python/
 
 ## Usage example
 
-It is very simple to run this game. just run in your terminal (after downloading/cloning it from github):
+It is very simple to run this game. Go to the directory created when you downloaded/cloned it from github and just type this in your terminal:
 
 ```sh
 python3 game.py
@@ -31,15 +31,12 @@ python3 -m pip install pygame==2.0.0.dev6
 ```
 
 It is going to ask your password (because of the sudo command).
-If it did not work you can follow this tutorial on youtube: https://www.youtube.com/watch?v=e-whas6qzsu
 
 For Windows 8 to 10:
 
 ```sh
 python3 -m pip install pygame==2.0.0.dev6
 ```
-
-If it did not work you can follow this tutorial on youtube: https://www.youtube.com/watch?v=aduzara-kzw
 
 ## Contributors
 
