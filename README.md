@@ -39,7 +39,7 @@ python3 -m pip install pygame==2.0.0.dev6
   </tr>
   <tr>
   <td><a href="https://github.com/Shirley-qiu"><img src="https://avatars0.githubusercontent.com/u/46514410?s=460&u=0e419674bea4056183b3e7c55bb2c99c531c93f1&v=4"/></a></td>
-    <td><b>Shirley Qiu - 500915363 </b> — Responsible for creating the test report and parts of the product backlog. Developed the team velocity diagram using estimated story points and is involved in some coding parts of the project. </td>
+    <td><b>Xueqing(Shirley) Qiu - 500915363 </b> — Responsible for creating the test report and parts of the product backlog. Developed the team velocity diagram using estimated story points and is involved in some coding parts of the project. </td>
   </tr>
   <tr>
     <td><a href="https://github.com/IJNAmatsukaze"><img src="https://avatars2.githubusercontent.com/u/46411829?s=460&u=5cd87c4c83e9dd4f7c4f6b0c3eee0144e1c0d7a6&v=4"/></a></td>
