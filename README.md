@@ -47,7 +47,7 @@ python3 -m pip install pygame==2.0.0.dev6
   </tr>
   <tr>
     <td><a href="https://github.com/chaoyu530"><img src="https://avatars0.githubusercontent.com/u/62677910?s=460&v=4"/></a>     </td>
-    <td><b>Jackson</b> — Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</td>
+    <td><b>Chaoyu Wang - 500815335 </b> — Responsible for the operation of the test project and give suggestions and changes. Use the test results to help the team and participate in the coding of a small number of project names. </td>
   </tr>
 </table>
   
